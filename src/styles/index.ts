@@ -32,6 +32,13 @@ export const styles = StyleSheet.create<Style>({
     fontSize: 20,
     fontWeight: "400",
   },
+  inputItem: {
+    flex: 1,
+    alignSelf: 'stretch',
+    fontSize: 16,
+    fontWeight: "400",
+    paddingRight: 10,
+  },
   flatlistContainer: {
     alignContent: 'flex-start',
     width: '90%',
@@ -74,5 +81,9 @@ export const styles = StyleSheet.create<Style>({
     fontSize: 16,
     fontWeight: "400",
     paddingVertical: 5,
+  },
+  buttonTextSmall: {
+    fontSize: 14,
+    fontWeight: "400",
   },
 })

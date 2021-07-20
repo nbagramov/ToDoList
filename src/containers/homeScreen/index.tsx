@@ -6,28 +6,18 @@ import {
   SafeAreaView,
   TouchableOpacity,
 } from "react-native";
-import { useDispatch, useSelector } from "react-redux";
-import { createTask } from "../../redux/actions";
-import { Tasks } from "../../utils/interfaces";
-import { styles } from "../../styles";
+import { useDispatch } from "react-redux";
+import { createTask } from "../../store/actions";
 import ItemList from "./components/itemList";
+import { styles } from "../../styles";
 
 const HomeScreen = (): React.ReactElement => {
   const [task, setTask] = useState<string>('');
-  const tasks = useSelector<Tasks, string[]>(state => state.tasks);
   const dispatch = useDispatch();
 
-  const onChange = (task: string): void => {
-    setTask(task)
-  };
-
   const onCreateTask = (task: string): void => {
-    if (task) {
-      if (!tasks.some((item: string) => item === task)) {
-        dispatch(createTask(task))
-        setTask('')
-      }
-    }
+    dispatch(createTask(task))
+    setTask('')
   }
 
   return (
@@ -42,7 +32,7 @@ const HomeScreen = (): React.ReactElement => {
           placeholder="Enter item..."
           style={styles.input}
           onSubmitEditing={(text) => onCreateTask(text.nativeEvent.text)}
-          onChange={(item) => onChange(item.nativeEvent.text)}
+          onChange={(item) => setTask(item.nativeEvent.text)}
         />
 
         <TouchableOpacity

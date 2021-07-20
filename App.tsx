@@ -1,7 +1,7 @@
 import React from 'react';
-import HomeScreen from "./src/containers/homeScreen";
 import { Provider } from "react-redux";
-import { store } from "./src/redux/store";
+import { store } from "./src/store/store";
+import HomeScreen from "./src/containers/homeScreen";
 
 const app = (
   <Provider store={store}>

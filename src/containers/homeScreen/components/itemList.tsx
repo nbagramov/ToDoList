@@ -1,60 +1,68 @@
+import React, {useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {FlatList, Text, TextInput, TouchableOpacity, View} from "react-native";
+import {deleteTask, editTask, selectTask} from '../../../store/actions';
+import {Task, Tasks} from "../../../utils/interfaces";
 import { styles } from "../../../styles";
-import {
-  FlatList,
-  Text,
-  TouchableOpacity,
-  View
-} from "react-native";
-import React from "react";
-import { IFlatListItem, Tasks } from "../../../utils/interfaces";
-import { deleteTask, selectTask } from "../../../redux/actions";
-import { useDispatch, useSelector } from "react-redux";
 
 const ItemList = (): React.ReactElement => {
-  const doneTasks = useSelector<Tasks, string[]>(state => state.doneTasks);
-  const tasks = useSelector<Tasks, string[]>(state => state.tasks);
+  const [text, setText] = useState<string>('');
+  const tasks = useSelector<Tasks, Tasks>(state => state);
   const dispatch = useDispatch();
 
-  const onSelectTask = (item: string) => {
-    dispatch(selectTask(item));
-  }
+  const renderItems = (item:Task, index: number): React.ReactElement => {
 
-  const onDeleteTask = (index: number): void => {
-    dispatch(deleteTask(index));
-  }
+    const onEditTask = (): void => {
+      setText(item.task)
+      dispatch(editTask(item, index, text));
+    }
 
-  const renderButtons = (index: number) => (
-    <TouchableOpacity
-      onPress={() => onDeleteTask(index)}
-      style={styles.buttons}
-    >
-      <Text style={styles.buttonText}>Delete</Text>
-    </TouchableOpacity>
-  )
-
-  const renderItems = ({ item, index }: IFlatListItem) => (
-    <View style={styles.items}>
-        <TouchableOpacity
-          onPress={() => onSelectTask(item)}
-          style={styles.itemsTouch}
+    return (
+      <View style={styles.items}>
+        {item.isEdit
+          ? <TextInput
+            value={text}
+            autoFocus
+            onEndEditing={() => onEditTask()}
+            onChangeText={(text) => setText(text)}
+            style={styles.inputItem}
+          />
+          : <TouchableOpacity
+            onPress={() => dispatch(selectTask(item, index))}
+            style={styles.itemsTouch}
           >
-          <Text
-            style={doneTasks.includes(item)
-            ? styles.itemsTextCrossed
-            : styles.itemsText}
+            <Text
+              style={item.isDone
+                ? styles.itemsTextCrossed
+                : styles.itemsText}
+            >
+              {item.task}
+            </Text>
+          </TouchableOpacity>
+        }
+
+        <View style={styles.buttons}>
+          <TouchableOpacity
+            onPress={() => onEditTask()}
           >
-            {item}
-          </Text>
-        </TouchableOpacity>
-      {renderButtons(index)}
-    </View>
-  )
+            <Text style={styles.buttonTextSmall}>Edit</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            onPress={() => dispatch(deleteTask(item, index))}
+          >
+            <Text style={styles.buttonTextSmall}>Delete</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+    )
+  }
 
   return (
     <FlatList
-      data={tasks}
-      renderItem={renderItems}
-      keyExtractor={(item) => item}
+      data={tasks.map(task => task)}
+      renderItem={(item) => renderItems(item.item, item.index)}
+      keyExtractor={(item) => item.task}
       style={styles.flatlistContainer}
     />
   )

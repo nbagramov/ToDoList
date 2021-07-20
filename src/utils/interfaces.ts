@@ -4,18 +4,17 @@ export interface Style {
   [key: string]: ViewStyle | TextStyle,
 }
 
-export interface IFlatListItem {
-  item: string,
-  index: number
-}
-
-export interface Tasks {
-  tasks: string[],
-  doneTasks: string[],
-}
-
 export interface Task {
+  task: string,
+  isEdit: boolean,
+  isDone: boolean,
+}
+
+export interface Tasks extends Array<Task>{}
+
+export interface Action {
   type: string,
-  item?: string,
+  task: Task | string,
   index?: number,
+  text?: string,
 }
