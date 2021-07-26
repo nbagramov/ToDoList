@@ -1,10 +1,17 @@
-import {CREATE_TASK, DELETE_TASK, EDIT_TASK, SELECT_TASK} from "./types";
-import {Task} from "../utils/interfaces";
+import {
+  CREATE_TASK,
+  DELETE_TASK,
+  EDIT_TASK,
+  GET_TASKS,
+  PUT_TASKS,
+  SELECT_TASK,
+} from "./types";
+import {Task, Tasks} from "../utils/interfaces";
 
-export const createTask = (task: string)=> {
+export const createTask = (item: string)=> {
   return {
     type: CREATE_TASK,
-    task: task,
+    item: item,
   }
 }
 
@@ -30,5 +37,18 @@ export const editTask = (task: Task, index: number, text: string)=> {
     task: task,
     index: index,
     text: text,
+  }
+}
+
+export const getTasks = ()=> {
+  return {
+    type: GET_TASKS,
+  }
+}
+
+export const putTasks = (tasks: Tasks)=> {
+  return {
+    type: PUT_TASKS,
+    tasks: tasks
   }
 }

@@ -17,9 +17,10 @@ export const styles = StyleSheet.create<Style>({
   inputContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginTop: 10,
-    marginBottom: 20,
-    padding: 10,
+    alignItems: 'center',
+    minHeight: 50,
+    paddingHorizontal: 10,
+    margin: 10,
     width: '90%',
     borderWidth: 1,
     borderRadius: 16,

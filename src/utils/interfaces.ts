@@ -5,6 +5,7 @@ export interface Style {
 }
 
 export interface Task {
+  _id?: number,
   task: string,
   isEdit: boolean,
   isDone: boolean,
@@ -14,7 +15,9 @@ export interface Tasks extends Array<Task>{}
 
 export interface Action {
   type: string,
-  task: Task | string,
   index?: number,
+  item?: string,
+  task?: Task,
   text?: string,
+  tasks?: Tasks
 }

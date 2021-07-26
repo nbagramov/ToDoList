@@ -1,7 +1,11 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {FlatList, Text, TextInput, TouchableOpacity, View} from "react-native";
-import {deleteTask, editTask, selectTask} from '../../../store/actions';
+import {
+  deleteTask,
+  editTask, getTasks,
+  selectTask
+} from '../../../store/actions';
 import {Task, Tasks} from "../../../utils/interfaces";
 import { styles } from "../../../styles";
 
@@ -9,6 +13,8 @@ const ItemList = (): React.ReactElement => {
   const [text, setText] = useState<string>('');
   const tasks = useSelector<Tasks, Tasks>(state => state);
   const dispatch = useDispatch();
+  useEffect(() => { dispatch(getTasks()) }, []);
+  console.log('tasks', tasks)
 
   const renderItems = (item:Task, index: number): React.ReactElement => {
 

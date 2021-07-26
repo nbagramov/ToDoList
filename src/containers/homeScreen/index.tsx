@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import {
-  View,
   Text,
   TextInput,
   SafeAreaView,
   TouchableOpacity,
+  KeyboardAvoidingView,
 } from "react-native";
 import { useDispatch } from "react-redux";
 import { createTask } from "../../store/actions";
@@ -15,8 +15,8 @@ const HomeScreen = (): React.ReactElement => {
   const [task, setTask] = useState<string>('');
   const dispatch = useDispatch();
 
-  const onCreateTask = (task: string): void => {
-    dispatch(createTask(task))
+  const onCreateTask = (item: string): void => {
+    dispatch(createTask(item))
     setTask('')
   }
 
@@ -26,7 +26,7 @@ const HomeScreen = (): React.ReactElement => {
 
       <ItemList />
 
-      <View style={styles.inputContainer}>
+      <KeyboardAvoidingView behavior="padding" style={styles.inputContainer}>
         <TextInput
           value={task}
           placeholder="Enter item..."
@@ -34,14 +34,13 @@ const HomeScreen = (): React.ReactElement => {
           onSubmitEditing={(text) => onCreateTask(text.nativeEvent.text)}
           onChange={(item) => setTask(item.nativeEvent.text)}
         />
-
         <TouchableOpacity
           style={styles.buttons}
           onPress={() => onCreateTask(task)}
         >
           <Text style={styles.buttonText}>Add</Text>
         </TouchableOpacity>
-      </View>
+      </KeyboardAvoidingView>
     </SafeAreaView>
   );
 };
