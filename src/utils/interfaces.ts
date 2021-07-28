@@ -1,4 +1,4 @@
-import { TextStyle, ViewStyle } from "react-native";
+import { TextStyle, ViewStyle } from 'react-native';
 
 export interface Style {
   [key: string]: ViewStyle | TextStyle,
@@ -11,7 +11,7 @@ export interface Task {
   isDone: boolean,
 }
 
-export interface Tasks extends Array<Task>{}
+export type Tasks = Array<Task>
 
 export interface Action {
   type: string,

@@ -1,27 +1,27 @@
-import React, {useEffect, useState} from "react";
-import {useDispatch, useSelector} from "react-redux";
-import {FlatList, Text, TextInput, TouchableOpacity, View} from "react-native";
+import React, {useEffect, useState} from 'react';
+import {FlatList, Text, TextInput, TouchableOpacity, View} from 'react-native';
+import {useDispatch, useSelector} from 'react-redux';
 import {
   deleteTask,
-  editTask, getTasks,
+  editTask,
+  getTasks,
   selectTask
 } from '../../../store/actions';
-import {Task, Tasks} from "../../../utils/interfaces";
-import { styles } from "../../../styles";
+import {Task, Tasks} from '../../../utils/interfaces';
+import { styles } from '../../../styles';
 
 const ItemList = (): React.ReactElement => {
   const [text, setText] = useState<string>('');
   const tasks = useSelector<Tasks, Tasks>(state => state);
   const dispatch = useDispatch();
-  useEffect(() => { dispatch(getTasks()) }, []);
-  console.log('tasks', tasks)
+  useEffect(() => { dispatch(getTasks()); }, []);
 
   const renderItems = (item:Task, index: number): React.ReactElement => {
 
     const onEditTask = (): void => {
-      setText(item.task)
+      setText(item.task);
       dispatch(editTask(item, index, text));
-    }
+    };
 
     return (
       <View style={styles.items}>
@@ -61,8 +61,8 @@ const ItemList = (): React.ReactElement => {
           </TouchableOpacity>
         </View>
       </View>
-    )
-  }
+    );
+  };
 
   return (
     <FlatList
@@ -71,7 +71,7 @@ const ItemList = (): React.ReactElement => {
       keyExtractor={(item) => item.task}
       style={styles.flatlistContainer}
     />
-  )
-}
+  );
+};
 
 export default ItemList;

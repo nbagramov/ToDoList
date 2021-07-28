@@ -1,13 +1,13 @@
-import { createStore, applyMiddleware, Reducer } from "redux";
+import { createStore, applyMiddleware, Reducer } from 'redux';
 import createSagaMiddleware from 'redux-saga';
-import { reducer } from "./reducer";
+import { reducer } from './reducer';
 import {
   watcherLoadTasks,
   watcherCreateTasks,
   watcherUpdateTasks,
   watcherRemoveTasks
 } from './saga';
-import { Action, Tasks } from "../utils/interfaces";
+import { Action, Tasks } from '../utils/interfaces';
 
 const sagaMiddleware = createSagaMiddleware();
 

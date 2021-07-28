@@ -1,5 +1,5 @@
-import { StyleSheet } from "react-native";
-import { Style } from "../utils/interfaces";
+import { StyleSheet } from 'react-native';
+import { Style } from '../utils/interfaces';
 
 export const styles = StyleSheet.create<Style>({
   container: {
@@ -11,7 +11,7 @@ export const styles = StyleSheet.create<Style>({
   },
   title: {
     fontSize: 30,
-    fontWeight: "700",
+    fontWeight: '700',
     color: 'blue',
   },
   inputContainer: {
@@ -31,13 +31,13 @@ export const styles = StyleSheet.create<Style>({
     flex: 1,
     alignSelf: 'stretch',
     fontSize: 20,
-    fontWeight: "400",
+    fontWeight: '400',
   },
   inputItem: {
     flex: 1,
     alignSelf: 'stretch',
     fontSize: 16,
-    fontWeight: "400",
+    fontWeight: '400',
     paddingRight: 10,
   },
   flatlistContainer: {
@@ -61,13 +61,13 @@ export const styles = StyleSheet.create<Style>({
   },
   itemsText: {
     fontSize: 20,
-    fontWeight: "400",
+    fontWeight: '400',
   },
   itemsTextCrossed: {
     fontSize: 20,
-    fontWeight: "400",
+    fontWeight: '400',
     color: 'lightgray',
-    textDecorationLine: "line-through",
+    textDecorationLine: 'line-through',
     textDecorationColor: 'blue',
   },
   buttons: {
@@ -80,11 +80,11 @@ export const styles = StyleSheet.create<Style>({
   },
   buttonText: {
     fontSize: 16,
-    fontWeight: "400",
+    fontWeight: '400',
     paddingVertical: 5,
   },
   buttonTextSmall: {
     fontSize: 14,
-    fontWeight: "400",
+    fontWeight: '400',
   },
-})
+});

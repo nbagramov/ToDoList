@@ -1,24 +1,24 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import {
   Text,
   TextInput,
   SafeAreaView,
   TouchableOpacity,
   KeyboardAvoidingView,
-} from "react-native";
-import { useDispatch } from "react-redux";
-import { createTask } from "../../store/actions";
-import ItemList from "./components/itemList";
-import { styles } from "../../styles";
+} from 'react-native';
+import { useDispatch } from 'react-redux';
+import { createTask } from '../../store/actions';
+import ItemList from './components/itemList';
+import { styles } from '../../styles';
 
 const HomeScreen = (): React.ReactElement => {
   const [task, setTask] = useState<string>('');
   const dispatch = useDispatch();
 
   const onCreateTask = (item: string): void => {
-    dispatch(createTask(item))
-    setTask('')
-  }
+    dispatch(createTask(item));
+    setTask('');
+  };
 
   return (
     <SafeAreaView style={styles.container}>

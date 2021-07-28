@@ -1,11 +1,11 @@
+import {Action, Tasks} from '../utils/interfaces';
 import {
   CREATE_TASK,
   DELETE_TASK,
   EDIT_TASK,
   PUT_TASKS,
   SELECT_TASK,
-} from "./types";
-import {Action, Tasks} from "../utils/interfaces";
+} from './types';
 
 const initialState: Tasks = [];
 
@@ -14,7 +14,7 @@ export const reducer = (state: Tasks = initialState, action: Action): Tasks => {
       case CREATE_TASK:
         if (action.item) {
           if (!state.some((item) => item.task === action.item)) {
-            state.push({task: action.item, isEdit: false, isDone: false})
+            state.push({task: action.item, isEdit: false, isDone: false});
           }
         }
         return state;
@@ -26,7 +26,7 @@ export const reducer = (state: Tasks = initialState, action: Action): Tasks => {
         return state;
       case SELECT_TASK:
         if (action.index || action.index === 0) {
-          state[action.index].isDone = !state[action.index].isDone
+          state[action.index].isDone = !state[action.index].isDone;
           return [...state];
         }
         return state;
@@ -39,7 +39,7 @@ export const reducer = (state: Tasks = initialState, action: Action): Tasks => {
         return state;
       case PUT_TASKS:
         if (action.tasks) {
-          return action.tasks
+          return action.tasks;
         }
         return state;
       default:

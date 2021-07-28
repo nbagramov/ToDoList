@@ -1,10 +1,13 @@
 import axios from 'axios';
 import { takeEvery, put } from 'redux-saga/effects';
-import { putTasks } from './actions';
 import {Action, Tasks} from '../utils/interfaces';
+import { putTasks } from './actions';
 import {
-  CREATE_TASK, DELETE_TASK, EDIT_TASK,
-  GET_TASKS, SELECT_TASK
+  CREATE_TASK,
+  DELETE_TASK,
+  EDIT_TASK,
+  SELECT_TASK,
+  GET_TASKS
 } from './types';
 
 /** GET TODOS */
@@ -40,11 +43,11 @@ export function* watcherCreateTasks() {
 /** UPDATE TASK */
 function* workerUpdateTasks({ task }: Action) {
   try {
-    yield axios.patch(`http://localhost:7000/updateTask?_id=${task!._id}`, {
-      task: task!.task,
-      isEdit: task!.isEdit,
-      isDone: task!.isDone
-    })
+    yield axios.patch(`http://localhost:7000/updateTask?_id=${task?._id}`, {
+      task: task?.task,
+      isEdit: task?.isEdit,
+      isDone: task?.isDone
+    });
   } catch (e) {
     console.error(e);
   }
@@ -58,7 +61,7 @@ export function* watcherUpdateTasks() {
 /** DELETE TASK */
 function* workerRemoveTasks({ task }: Action) {
   try {
-    yield axios.delete(`http://localhost:7000/deleteTask/?_id=${task!._id}`);
+    yield axios.delete(`http://localhost:7000/deleteTask/?_id=${task?._id}`);
   } catch (e) {
     console.error(e);
   }

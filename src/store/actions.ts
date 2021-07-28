@@ -1,3 +1,4 @@
+import {Action, Task, Tasks} from '../utils/interfaces';
 import {
   CREATE_TASK,
   DELETE_TASK,
@@ -5,50 +6,49 @@ import {
   GET_TASKS,
   PUT_TASKS,
   SELECT_TASK,
-} from "./types";
-import {Task, Tasks} from "../utils/interfaces";
+} from './types';
 
-export const createTask = (item: string)=> {
+export const createTask = (item: string): Action=> {
   return {
     type: CREATE_TASK,
     item: item,
-  }
-}
+  };
+};
 
-export const deleteTask = (task: Task, index: number)=> {
+export const deleteTask = (task: Task, index: number): Action=> {
   return {
     type: DELETE_TASK,
     task: task,
     index: index,
-  }
-}
+  };
+};
 
-export const selectTask = (task: Task, index: number)=> {
+export const selectTask = (task: Task, index: number): Action=> {
   return {
     type: SELECT_TASK,
     task: task,
     index: index,
-  }
-}
+  };
+};
 
-export const editTask = (task: Task, index: number, text: string)=> {
+export const editTask = (task: Task, index: number, text: string): Action=> {
   return {
     type: EDIT_TASK,
     task: task,
     index: index,
     text: text,
-  }
-}
+  };
+};
 
-export const getTasks = ()=> {
+export const getTasks = (): Action=> {
   return {
     type: GET_TASKS,
-  }
-}
+  };
+};
 
-export const putTasks = (tasks: Tasks)=> {
+export const putTasks = (tasks: Tasks): Action=> {
   return {
     type: PUT_TASKS,
     tasks: tasks
-  }
-}
+  };
+};
