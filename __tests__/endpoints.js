@@ -3,6 +3,7 @@ const supertest = require('supertest');
 const request = supertest(app);
 
 describe('testing-server-routes', () => {
+    afterAll(() => setTimeout(() => process.exit(), 1000));
     it('gets the test endpoint', async done => {
         const response = await request.get('/');
         const {status} = response;
@@ -11,11 +12,7 @@ describe('testing-server-routes', () => {
         done();
     });
     it('post the test endpoint', async done => {
-        const response = await request.post('/createTask').send({
-            task: 'test',
-            isEdit: false,
-            isDone: false,
-        });
+        const response = await request.post('/createTask');
         const {status} = response;
 
         expect(status).toBe(200);
